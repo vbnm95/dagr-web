@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -13,15 +14,23 @@ from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import PlainTextResponse
 
-
 app = FastAPI(title="DAGR API", version="1.3.0")
+
+
+def get_allowed_origins() -> list[str]:
+    defaults = [
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ]
+    frontend_origin = os.getenv("FRONTEND_ORIGIN", "").strip()
+    if frontend_origin and frontend_origin not in defaults:
+        defaults.append(frontend_origin)
+    return defaults
+
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-    ],
+    allow_origins=get_allowed_origins(),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
