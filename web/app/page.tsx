@@ -17,7 +17,7 @@ export default function HomePage() {
 
   const [chainA, setChainA] = useState("A");
   const [chainB, setChainB] = useState("A");
-  const [dcut, setDcut] = useState(1.25);
+  const [dcut, setDcut] = useState(3.0);
   const [method, setMethod] = useState<MethodType>("iterative");
   const [maxDomains, setMaxDomains] = useState(2);
   const [nDomains, setNDomains] = useState(2);
@@ -153,8 +153,8 @@ export default function HomePage() {
             <div className="grid gap-3 md:grid-cols-2">
               <label
                 className={`rounded-xl border p-4 ${sourceMode === "example"
-                    ? "border-zinc-900 bg-zinc-50"
-                    : "border-zinc-200"
+                  ? "border-zinc-900 bg-zinc-50"
+                  : "border-zinc-200"
                   }`}
               >
                 <div className="flex items-start gap-3">
@@ -177,8 +177,8 @@ export default function HomePage() {
 
               <label
                 className={`rounded-xl border p-4 ${sourceMode === "upload"
-                    ? "border-zinc-900 bg-zinc-50"
-                    : "border-zinc-200"
+                  ? "border-zinc-900 bg-zinc-50"
+                  : "border-zinc-200"
                   }`}
               >
                 <div className="flex items-start gap-3">
@@ -316,7 +316,7 @@ export default function HomePage() {
                   disabled={submitting}
                 />
                 <p className="mt-2 text-sm text-zinc-600">
-                  도메인 분할 기준값입니다.
+                  도메인 분할 기준값입니다. 배포 데모에서는 예제 실행 안정성을 위해 기본값 3.00을 사용합니다.
                 </p>
               </label>
 
@@ -407,6 +407,16 @@ export default function HomePage() {
             <p className="mt-2 text-xs text-zinc-500">
               안정적인 운영을 위해 업로드 파일과 결과 데이터는 일정 시간 후 자동 삭제됩니다.
             </p>
+
+            <div className="mt-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+              <p className="font-medium">배포 데모 환경 안내</p>
+              <p className="mt-1">
+                현재 공개 배포 버전은 무료 서버 환경에서 동작하므로 장시간 계산이 자동 중단될 수 있습니다.
+              </p>
+              <p className="mt-1">
+                무거운 계산이나 재현 실험은 로컬 환경 또는 더 높은 성능의 서버에서 실행하는 것을 권장합니다.
+              </p>
+            </div>
 
             {statusText ? (
               <div className="mt-4 rounded-lg border border-blue-200 bg-blue-50 p-3 text-sm text-blue-900">
