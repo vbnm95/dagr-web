@@ -546,7 +546,7 @@ def select_domains_iterative_bit(
 def select_domains_exact_bit(
     candidate_domains: Sequence[int],
     n_domains: int,
-    max_exact_combinations: Optional[int] = 1_000_000,
+    max_exact_combinations: Optional[int] = 10_000_000,
 ) -> List[int]:
     if n_domains <= 0:
         raise ValueError("n_domains must be positive for exact mode.")
@@ -803,7 +803,7 @@ def build_argparser() -> argparse.ArgumentParser:
     p.add_argument(
     "--max-exact-combinations",
     type=none_or_int,
-    default=1_000_000,
+    default=10_000_000,
     help="Maximum combinations allowed for exact mode. Use 'none' to disable the limit."
     )
 
